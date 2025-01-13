@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
       self = {
          addItem: function (item) {
             // Add a new item to the end of the list.
-            state.list.push(item);
+            state.list = state.list.concat(item);
          },
          getItem: function (whichItem) {
             // Return the desired item from the list.
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Create a function that updates everything that needs updating whenever the model changes.
       updateToDoList = function () {
-         var liElement, toDoListOutputElement, whichItem;
+         var toDoListOutputElement;
 
          // Save the new state in web storage (if available).
          localStorage.setItem('generic web app', toDoList.getState());
@@ -64,16 +64,19 @@ document.addEventListener('DOMContentLoaded', function () {
          // Update the view.
          toDoListOutputElement = document.querySelector('#to-do-list-output');
          // Empty the #to-do-list-output element of all child elements.
-         while (toDoListOutputElement.hasChildNodes()) {
-            toDoListOutputElement.lastChild.remove();
-         }
+         Array.from(toDoListOutputElement.childNodes).forEach(function (childNode) {
+            childNode.remove();
+         });
          // Insert the list items as new li elements one by one.
-         for (whichItem = 0; whichItem < toDoList.getNumItems(); whichItem += 1) {
-            // Create a new li element in HTML and insert it just inside the end of the list.
-            liElement = document.createElement('li');
+         Array.from({length: toDoList.getNumItems()}, function () {
+            // Create each new li element in HTML.
+            return document.createElement('li');
+         }).forEach(function (liElement, whichItem) {
+            // Give it its to-do list item.
             liElement.textContent = toDoList.getItem(whichItem);
+            // Insert it just inside the end of the list.
             toDoListOutputElement.appendChild(liElement);
-         }
+         });
 
          // Update the controller:  Add a click handler to each new li element.
          Array.from(toDoListOutputElement.querySelectorAll('li')).forEach(function (element, whichItem) {
