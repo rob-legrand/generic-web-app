@@ -20,7 +20,7 @@ body {
 }
 
 h1 {
-   color: rgb(34, 68, 102);
+   color: rgb(30, 60, 90);
    text-align: center;
 }
 
@@ -30,4 +30,8 @@ input {
 
 #to-do-list-output li {
    cursor: pointer;
+}
+
+#to-do-list-output li:hover {
+   background-color: rgb(245, 250, 255);
 }
