@@ -56,31 +56,30 @@ document.addEventListener('DOMContentLoaded', function () {
    (function () {
       let toDoList; // Used to keep track of the model.
 
+      const webStorageKey = 'CS 3312 generic web app';
+
       // Create a function that updates everything that needs updating whenever the model changes.
       const updateToDoList = function () {
 
          // Save the new state in web storage.
-         localStorage.setItem('generic web app', toDoList.getState());
+         localStorage.setItem(webStorageKey, toDoList.getState());
 
          // Update the view.
          const toDoListOutputElement = document.querySelector('#to-do-list-output');
-         // Empty the #to-do-list-output element of all child elements.
-         [...toDoListOutputElement.childNodes].forEach(function (childNode) {
-            childNode.remove();
-         });
-         // Insert the list items as new li elements one by one.
-         Array.from(
+         // Create the list items as an array of new li elements one by one.
+         const newListItems = Array.from(
             {length: toDoList.getNumItems()},
             // Create each new li element in HTML.
             function () {
                return document.createElement('li');
             }
-         ).forEach(function (liElement, whichItem) {
-            // Give it its to-do list item.
+         );
+         newListItems.forEach(function (liElement, whichItem) {
+            // Give each element its to-do-list item.
             liElement.textContent = toDoList.getItem(whichItem);
-            // Insert it just inside the end of the list.
-            toDoListOutputElement.append(liElement);
          });
+         // In the page, replace the old items in the list with the new ones.
+         toDoListOutputElement.replaceChildren(...newListItems);
 
          // Update the controller:  Add a click handler to each new li element.
          [...toDoListOutputElement.querySelectorAll('li')].forEach(function (liElement, whichItem) {
@@ -93,7 +92,7 @@ document.addEventListener('DOMContentLoaded', function () {
          });
       };
 
-      // Set up the controller:  Handle adding a new to-do list item.
+      // Set up the controller:  Handle adding a new to-do-list item.
       document.querySelector('#add-to-do-list-item').addEventListener('click', function () {
          // Update the model.
          const itemToAdd = document.querySelector('#to-do-list-item-to-add').value;
@@ -105,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       // When the page is loaded, get any saved state from web storage and use it to create a new model.
-      toDoList = createToDoList(localStorage.getItem('generic web app'));
+      toDoList = createToDoList(localStorage.getItem(webStorageKey));
       // Update everything else based on the new model state.
       updateToDoList();
    }());
