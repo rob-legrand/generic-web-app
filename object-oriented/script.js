@@ -28,18 +28,14 @@ document.addEventListener('DOMContentLoaded', function () {
             // Add a new item to the end of the list.
             state.list = [...state.list, item];
          },
-         getItem: function (whichItem) {
-            // Return the desired item from the list.
-            return state.list[whichItem];
-         },
-         getNumItems: function () {
-            // Return the number of items in the list.
-            return state.list.length;
-         },
-         getState: function () {
+         getList: () => (
+            // Return a copy of the list (not the original!).
+            [...state.list]
+         ),
+         getState: () => (
             // Return a string representation of the state object, to be used for web storage.
-            return JSON.stringify(state);
-         },
+            JSON.stringify(state)
+         ),
          removeItem: function (whichItem) {
             // Remove an item from anywhere in the list.
             state.list = [
@@ -67,17 +63,16 @@ document.addEventListener('DOMContentLoaded', function () {
          // Update the view.
          const toDoListOutputElement = document.querySelector('#to-do-list-output');
          // Create the list items as an array of new li elements one by one.
-         const newListItems = Array.from(
-            {length: toDoList.getNumItems()},
-            // Create each new li element in HTML.
-            function () {
-               return document.createElement('li');
+         const newListItems = toDoList.getList().map(
+            function (item) {
+               // Create a new li element in HTML.
+               const liElement = document.createElement('li');
+               // Give it its to-do-list item.
+               liElement.textContent = item;
+               // Place it in the new array.
+               return liElement;
             }
          );
-         newListItems.forEach(function (liElement, whichItem) {
-            // Give each element its to-do-list item.
-            liElement.textContent = toDoList.getItem(whichItem);
-         });
          // In the page, replace the old items in the list with the new ones.
          toDoListOutputElement.replaceChildren(...newListItems);
 
