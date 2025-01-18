@@ -8,19 +8,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
    // Create a factory that makes an object to keep track of a to-do list.
    const createToDoList = function (oldState) {
-      let state; // Used to keep track of an object with a to-do list.
 
-      // Create a default starting state with an empty to-do list.
-      state = {
-         list: []
-      };
-      // If there's a valid previous state, use it instead.
-      if (typeof oldState === 'string') {
+      // Keep track of an object with a to-do list.
+      const state = (function () {
+         // If there's a valid previous state, use it.
          try {
-            state = JSON.parse(oldState);
+            return JSON.parse(oldState);
          } catch (ignore) {
          }
-      }
+         // Otherwise, create a default starting state with an empty to-do list.
+      }()) ?? {
+         list: []
+      };
 
       // The self object contains public methods.
       const self = {
