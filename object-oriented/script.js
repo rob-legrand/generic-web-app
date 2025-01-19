@@ -16,8 +16,8 @@ document.addEventListener('DOMContentLoaded', function () {
             return JSON.parse(oldState);
          } catch (ignore) {
          }
-         // Otherwise, create a default starting state with an empty to-do list.
       }()) ?? {
+         // Otherwise, create a default starting state with an empty to-do list.
          list: []
       };
 
@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
    (function () {
       let toDoList; // Used to keep track of the model.
 
-      const webStorageKey = 'CS 3312 generic web app';
+      const webStorageKey = 'generic-web-app';
 
       // Create a function that updates everything that needs updating whenever the model changes.
       const updateToDoList = function () {
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function () {
          toDoListOutputElement.replaceChildren(...newListItems);
 
          // Update the controller:  Add a click handler to each new li element.
-         [...toDoListOutputElement.querySelectorAll('li')].forEach(function (liElement, whichItem) {
+         newListItems.forEach(function (liElement, whichItem) {
             liElement.addEventListener('click', function () {
                // Update the model.
                toDoList.removeItem(whichItem);
