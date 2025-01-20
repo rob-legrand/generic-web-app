@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', function () {
    (function () {
       let toDoList; // Used to keep track of the model.
 
-      const webStorageKey = 'generic-web-app';
+      const webStorageKey = 'generic-web-app-object-oriented';
 
       // Create a function that updates everything that needs updating whenever the model changes.
       const updateToDoList = function () {

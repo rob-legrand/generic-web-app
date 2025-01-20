@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+/* Fixing the box-sizing attribute will make sizing boxes easier. */
+html {
+   box-sizing: border-box;
+}
+
+/* Normally the * selector is smart to avoid, but for this purpose it's fine. */
+*, *:before, *:after {
+   box-sizing: inherit;
+}
+
+body {
+   align-items: center;
+   background-color: rgb(255, 250, 245);
+   display: flex;
+   flex-direction: column;
+   font-family: Georgia, serif;
+   justify-content: center;
+}
+
+h1 {
+   color: rgb(30, 60, 90);
+   text-align: center;
+}
+
+input {
+   text-align: center;
+}
+
+#to-do-list-output li {
+   cursor: pointer;
+}
+
+#to-do-list-output li:hover {
+   background-color: rgb(245, 250, 255);
+}
