@@ -79,13 +79,13 @@ document.addEventListener('DOMContentLoaded', function () {
    (function () {
       let toDoList; // Used to keep track of the model.
 
-      const webStorageKey = 'generic-web-app-functional';
+      const localStorageKey = 'generic-web-app-functional';
 
       // Create a function that updates everything that needs updating whenever the model changes.
       const updateToDoList = function () {
 
          // Save the new state in web storage.
-         localStorage.setItem(webStorageKey, JSON.stringify(toDoList));
+         localStorage.setItem(localStorageKey, JSON.stringify(toDoList));
 
          // Update the view.
          const toDoListOutputElement = document.querySelector('#to-do-list-output');
@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function () {
       });
 
       // When the page is loaded, get any saved state from web storage and use it to create a new model.
-      toDoList = tdl.createList(localStorage.getItem(webStorageKey));
+      toDoList = tdl.createList(localStorage.getItem(localStorageKey));
       // Update everything else based on the new model state.
       updateToDoList();
    }());
