@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+:root {
+   --monospace: Inconsolata, Consolas, "Andale Mono", AndaleMono, monospace;
+   --serif: Palatino, "Palatino Linotype", "Century Schoolbook", Perpetua, Baskerville, Garamond, Georgia, "Goudy Old Style", Didot, Bodoni, serif;
+}
+
 a {
    text-decoration: none;
 }
@@ -25,7 +30,7 @@ a:active {
 body {
    background-color: rgb(245, 250, 255);
    color: rgb(0, 30, 60);
-   font-family: Palatino, "Palatino Linotype", "Century Schoolbook", Perpetua, Baskerville, Garamond, Georgia, "Goudy Old Style", Didot, Bodoni, serif;
+   font-family: var(--serif);
    margin-left: 10%;
    margin-right: 10%;
 }
@@ -34,7 +39,7 @@ code {
    border-color: rgb(165, 210, 255);
    border-style: solid;
    border-width: 1px;
-   font-family: Consolas, monospace;
+   font-family: var(--monospace);
    font-size: 300%;
    margin: 1px;
    padding: 1px;
