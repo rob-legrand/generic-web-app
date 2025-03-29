@@ -3,6 +3,7 @@
 :root {
    --monospace: Inconsolata, Consolas, "Andale Mono", AndaleMono, monospace;
    --serif: Palatino, "Palatino Linotype", "Century Schoolbook", Perpetua, Baskerville, Garamond, Georgia, "Goudy Old Style", Didot, Bodoni, serif;
+   color-scheme: dark light;
 }
 
 a {
