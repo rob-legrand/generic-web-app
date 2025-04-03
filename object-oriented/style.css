@@ -3,6 +3,7 @@
 /* It's best to use CSS variables and font stacks for font-family. */
 :root {
    --serif: Georgia, Didot, Palatino, "Palatino Linotype", "Book Antiqua", Garamond, "Goudy Old Style", Perpetua, Baskerville, Gentium, serif;
+   color-scheme: dark light;
 }
 
 /* Fixing the box-sizing attribute will make sizing boxes easier. */
