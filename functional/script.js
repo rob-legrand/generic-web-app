@@ -48,6 +48,38 @@ document.addEventListener('DOMContentLoaded', function () {
             [...list, item],
             Object.freeze
          ),
+         createElement: function (args) {
+            // Create a new HTML element.
+            const newElement = document.createElement(args?.elementType ?? 'div');
+            // Give it desired attributes.
+            if (typeof args?.attributes === 'object') {
+               Object.entries(args.attributes).forEach(function (attribute) {
+                  newElement.setAttribute(attribute[0], attribute[1]);
+               });
+            }
+            // Give it desired CSS classes.
+            if (Array.isArray(args?.classList)) {
+               args.classList.forEach(function (aClass) {
+                  newElement.classList.add(aClass);
+               });
+            }
+            // Give it desired children: HTML elements or text.
+            newElement.replaceChildren(...(
+               Array.isArray(args?.children)
+               ? args.children
+               : (
+                  typeof args?.textContent === 'string'
+                  || Number.isFinite(args?.textContent)
+               )
+               ? [document.createTextNode(args.textContent)]
+               : []
+            ));
+            // Give it a desired title.
+            if (typeof args?.title === 'string') {
+               newElement.title = args.title;
+            }
+            return newElement;
+         },
          createList: (oldList) => util.deepCopy(
             // Create a new frozen object to keep track of a to-do list.
             util.createUnfrozenList(
