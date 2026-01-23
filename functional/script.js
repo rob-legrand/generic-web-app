@@ -123,14 +123,13 @@ document.addEventListener('DOMContentLoaded', function () {
          const toDoListOutputElement = document.querySelector('#to-do-list-output');
          // Create the list items as an array of new li elements one by one.
          const newListItems = toDoList.map(
-            function (item) {
-               // Create a new li element in HTML.
-               const liElement = document.createElement('li');
+            // Create a new li element in HTML.
+            (item) => tdl.createElement({
+               elementType: 'li',
                // Give it its to-do-list item.
-               liElement.textContent = item;
-               // Place it in the new array.
-               return liElement;
-            }
+               textContent: item
+            })
+            // Place it in the new array.
          );
          // In the page, replace the old items in the list with the new ones.
          toDoListOutputElement.replaceChildren(...newListItems);
