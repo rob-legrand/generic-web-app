@@ -59,9 +59,7 @@ document.addEventListener('DOMContentLoaded', function () {
             }
             // Give it desired CSS classes.
             if (Array.isArray(args?.classList)) {
-               args.classList.forEach(function (aClass) {
-                  newElement.classList.add(aClass);
-               });
+               newElement.classList.add(...args.classList);
             }
             // Give it desired children: HTML elements or text.
             newElement.replaceChildren(...(
