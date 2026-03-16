@@ -65,11 +65,6 @@ document.addEventListener('DOMContentLoaded', function () {
             newElement.replaceChildren(...(
                Array.isArray(args?.children)
                ? args.children
-               : (
-                  typeof args?.textContent === 'string'
-                  || Number.isFinite(args?.textContent)
-               )
-               ? [document.createTextNode(args.textContent)]
                : []
             ));
             return newElement;
