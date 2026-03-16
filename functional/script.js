@@ -72,10 +72,6 @@ document.addEventListener('DOMContentLoaded', function () {
                ? [document.createTextNode(args.textContent)]
                : []
             ));
-            // Give it a desired title.
-            if (typeof args?.title === 'string') {
-               newElement.title = args.title;
-            }
             return newElement;
          },
          createList: (oldList) => util.deepCopy(
