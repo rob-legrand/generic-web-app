@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
             (item) => tdl.createElement({
                elementType: 'li',
                // Give it its to-do-list item.
-               textContent: item
+               children: [item]
             })
             // Place it in the new array.
          );
