@@ -53,8 +53,8 @@ document.addEventListener('DOMContentLoaded', function () {
             const newElement = document.createElement(args?.elementType ?? 'div');
             // Give it desired attributes.
             if (typeof args?.attributes === 'object') {
-               Object.entries(args.attributes).forEach(function (attribute) {
-                  newElement.setAttribute(attribute[0], attribute[1]);
+               Object.entries(args.attributes).forEach(function ([name, value]) {
+                  newElement.setAttribute(name, value);
                });
             }
             // Give it desired CSS classes.
