@@ -62,11 +62,9 @@ document.addEventListener('DOMContentLoaded', function () {
                newElement.classList.add(...args.classList);
             }
             // Give it desired children: HTML elements or text.
-            newElement.replaceChildren(...(
-               Array.isArray(args?.children)
-               ? args.children
-               : []
-            ));
+            if (Array.isArray(args?.children)) {
+               newElement.replaceChildren(...args.children);
+            }
             return newElement;
          },
          createList: (oldList) => util.deepCopy(
